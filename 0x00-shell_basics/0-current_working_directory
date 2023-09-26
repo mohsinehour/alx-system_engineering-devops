@@ -1,2 +1,5 @@
 #!/bin/bash
 current_dir="$(pwd)"
+echo "Current working directory: $current_dir"
+chmod +x print_current_directory.sh
+./print_current_directory.sh
