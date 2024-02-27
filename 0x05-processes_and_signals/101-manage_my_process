@@ -1,24 +1,37 @@
 #!/usr/bin/env bash
-# This script creates the file /var/run/myscript.pid containing its PID
-# displays "To infinity and beyond indefinitely", displays
-# "I hate the kill command" when receiving a SIGTERM signal, displays
-# "Y U no love me?!" when receiving a SIGINT signal, deletes the file
-# /var/run/myscript.pid and terminates itself when receiving a SIGQUIT or
-# SIGTERM signal
+# This script manages 'manage_my_process'
 
-count=1
+#!/usr/bin/env bash
+# Manages 'manage_my_process'
 
-PIDFILE="/var/run/myscript.pid"
-touch $PIDFILE
-echo $$ > $PIDFILE
-
-trap 'echo I hate the kill command; rm $PIDFILE; kill -SIGKILL $$' SIGTERM
-trap 'echo Y U no love me?!; kill -SIGKILL $$' SIGINT
-
-trap 'rm $PIDFILE; kill -SIGKILL $$' SIGQUIT
-
-while [ $count ]
-do
-    echo "To infinity and beyond"
-    sleep 2
-done
+if [ $# -gt 0 ]
+then
+    if [ "$1" == "start" ]
+    then
+	./manage_my_process &
+	touch /var/run/my_process.pid
+#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process started"
+    elif [ "$1" == "stop" ]
+    then
+#	kill $(pgrep -f manage_my_process)
+	echo "manage_my_process stopped"
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+    elif [ "$1" == "restart" ]
+    then
+#	kill $(pgrep -f manage_my_process)
+	kill "$(cat /var/run/my_process.pid)"
+	rm -f /var/run/my_process.pid
+	./manage_my_process &
+#	echo $(pgrep -f manage_my_process) > /var/run/my_process.pid
+	touch /var/run/my_process.pid
+	echo "$!" > /var/run/my_process.pid
+	echo "manage_my_process restarted"
+    else
+	echo "Usage: manage_my_process {start|stop|restart}"
+    fi
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
+fi
