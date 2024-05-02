@@ -41,7 +41,7 @@ frontend mohsinehour-frontend
         default_backend mohsinehour-backend
 
 frontend mohsinehour-frontend-https
-        bind *:443 ssl crt /etc/haproxy/certs/mohsinehour.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.mohsinehour.tech.pem
         http-request set-header X-Forwarded-Proto https
         default_backend mohsinehour-backend
 
