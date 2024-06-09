@@ -2,7 +2,7 @@
 
 **Executive Summary**
 
-Oh boy, do we have a story for you.  From [Start Time] to [End Time] (PST), our login system went belly-up, leaving a whopping 80% of users unable to access their accounts. That's a lot of frustrated folks (and a few frantic engineers). The culprit? A well-meaning but ultimately buggy code update. The good news? We identified the issue swiftly, rectified it within a few hours, and are taking steps to ensure this never happens again. 
+Oh boy, do we have a story for you.  From 3pm to 7pm (PST), our login system went belly-up, leaving a whopping 80% of users unable to access their accounts. That's a lot of frustrated folks (and a few frantic engineers). The culprit? A well-meaning but ultimately buggy code update. The good news? We identified the issue swiftly, rectified it within a few hours, and are taking steps to ensure this never happens again. 
 
 **Timeline**
 
